@@ -82,8 +82,8 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
-num_iters = 400;
+alpha = 0.1;
+num_iters = 50;
 
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
@@ -92,6 +92,7 @@ theta = zeros(3, 1);
 % Plot the convergence graph
 figure;
 plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+
 xlabel('Number of iterations');
 ylabel('Cost J');
 
@@ -106,6 +107,12 @@ fprintf('\n');
 % not need to be normalized.
 price = 0; % You should change this
 
+X_test = [1650 3];
+X_test = X_test - (ones(size(X_test)) .* mu);
+X_test = X_test ./ (sigma .* ones(size(X_test)));
+X_test = [ones(1) X_test];
+
+price = theta' * X_test';
 
 % ============================================================
 
@@ -150,6 +157,13 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
+
+X_test = [1 1650 3];
+
+fprintf('My Theta: \n')
+fprintf(' %f \n', theta)
+fprintf(' %f \n', X_test)
+price = theta' * X_test';
 
 
 % ============================================================
